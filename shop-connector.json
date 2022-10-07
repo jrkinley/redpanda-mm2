@@ -1,0 +1,16 @@
+{
+  "name": "shop",
+  "config": {
+    "name": "shop",
+    "connector.class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
+    "source.cluster.alias": "shop",
+    "source.cluster.bootstrap.servers": "redpanda:9093",
+    "target.cluster.alias": "kafka",
+    "target.cluster.bootstrap.servers": "kafka:9993",
+    "topics": "pos",
+    "replication.factor": "1",
+    "offset-syncs.topic.replication.factor": "1",
+    "sync.topic.acls.enabled": "false",
+    "refresh.topics.interval.seconds": "10"
+  }
+}

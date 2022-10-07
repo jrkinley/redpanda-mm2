@@ -1,0 +1,52 @@
+# The unique identifier for the agent. If not specified the id defaults to the hostname 
+# reported by the kernel. When forwarding a record, if its key is empty, then it is set
+# to the agent id to route all of the records forwarded by the same agent to the same 
+# destination topic partition.
+id: agent-tavernes-blanques
+# If the given topics do not exist, attempt to create them on the source and destination
+# clusters.
+create_topics: true
+# Source cluster configuration.
+source:
+    bootstrap_servers: localhost:9092
+    # The list of topics to forward to the destination cluster.
+    topics:
+        - agent-pos
+    # Set the consumer group for the agent to join and consume in.
+    # Defaults to the agent id if not set.
+    consumer_group_id: "mercadona-group"
+    # If "create_topics" is true, then attempt to create the topics on the source cluster
+    # with this number of partitions and replication factor.
+    default_partitions: 1
+    default_replication: 1
+    # The source cluster TLS configuration.
+    tls:
+        enabled: false
+        # client_key: "agent.key"
+        # client_cert: "agent.crt"
+        # ca_cert: "ca.crt"
+    # The source cluster SASL configuration.
+    sasl:
+        # Valid SASL mechanisms: plain | scram-sha-256 | scram-sha-512 | aws-msk-iam
+        # sasl_method: ""
+        # sasl_username: ""
+        # sasl_password: ""
+# Destination cluster configuration.
+destination:
+    bootstrap_servers: localhost:9992
+    # If "create_topics" is true, then attempt to create the topics on the destination
+    # cluster with this number of partitions and replication factor.
+    default_partitions: 1
+    default_replication: 1
+    # The destination cluster TLS configuration.
+    tls:
+        enabled: false
+        # client_key: "agent.key"
+        # client_cert: "agent.crt"
+        # ca_cert: "ca.crt"
+    # The destination cluster SASL configuration.
+    sasl:
+        # Valid SASL mechanisms: plain | scram-sha-256 | scram-sha-512 | aws-msk-iam
+        # sasl_method: ""
+        # sasl_username: ""
+        # sasl_password: ""

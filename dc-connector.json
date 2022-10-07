@@ -1,0 +1,18 @@
+{
+  "name": "dc",
+  "config": {
+    "name": "dc",
+    "connector.class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
+    "source.cluster.alias": "dc",
+    "source.cluster.bootstrap.servers": "kafka:9993",
+    "consumer.override.bootstrap.servers": "kafka:9993",
+    "target.cluster.alias": "shop",
+    "target.cluster.bootstrap.servers": "redpanda:9093",
+    "producer.override.bootstrap.servers": "redpanda:9093",
+    "topics": "prices",
+    "replication.factor": "1",
+    "offset-syncs.topic.replication.factor": "1",
+    "sync.topic.acls.enabled": "false",
+    "refresh.topics.interval.seconds": "10"
+  }
+}
